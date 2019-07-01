@@ -38,7 +38,7 @@ class SegnalazioniViewController: UITableViewController {
         
         let obj = Corsa(NomeCorsa: "E",LuogoPartenza: "Bergamo",LuogoArrivo: "Tavernola",OraPartenza: 17.15,OraArrivo: 19.30,Ritardo: 12,Anticipo: 0,Controllori: false)
         Segnalazioni.append(obj)
-        
+
     }
     func setupNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -65,9 +65,11 @@ class SegnalazioniViewController: UITableViewController {
         cell.OraPartenzaLabel?.text = String(Segnalazioni[indexPath.row].OraPartenza)
         cell.ALabel?.text = Segnalazioni[indexPath.row].LuogoArrivo
         cell.OraArrivoLabel?.text = String(Segnalazioni[indexPath.row].OraArrivo)
-        cell.LineaImageView?.image = nil
-        cell.Tipo2Label.text = "b"
-        cell.TipoLabel.text = "a"
+        cell.LineaImageView?.image = UIImage(named: Segnalazioni[indexPath.row].NomeCorsa)
+        cell.Tipo2Label.text = String(Int(Segnalazioni[indexPath.row].Ritardo)) + " min."
+        cell.TipoLabel.text = "Ritardo"
         return cell
     }
 }
+
+

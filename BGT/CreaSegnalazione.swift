@@ -19,35 +19,39 @@ class CreaSegnalazione: UIViewController, UIPickerViewDelegate, UIPickerViewData
     @IBAction func AnnullaPressed(_ sender: Any) {
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func TipoTFClicked(_ sender: Any) {
         section = 1
-        ShowPicker(TipoTF,TipoPicker)
+        ShowPicker(TipoTFPicker,TipoPicker)
     }
     
-    @IBAction func SecondTFClicked(_ sender: Any) {
-        
-        ShowPicker(SecondTF,SecondPicker)
+    @IBAction func LineaTFClicked(_ sender: Any) {
+        section = 2
+        label = 2
+        ShowPicker(LineaTFPicker,LineaPicker)
     }
     
-    @IBAction func ThirdTFClicked(_ sender: Any) {
-        
+    @IBAction func QuantoTFClicked(_ sender: Any) {
+        section = 2
+        label = 3
+        ShowPicker(QuantoTFPicker,QuantoPicker)
+    }
+    
+    @IBAction func LinFerTFClicked(_ sender: Any) {
+        section = 4
+        label = 3
+        ShowPicker(LinFerTFPicker,LinFerPicker)
+    }
+    @IBAction func OreTFClicked(_ sender: Any) {
+        section = 3
+        label = 3
         showTimePicker()
     }
-    @IBAction func FourthTFClicked(_ sender: Any) {
-        label = 4
-        ShowPicker(FourthTF,OraPicker)
+    @IBAction func DoveSegmentedControlChanged(_ sender: Any) {
+        
     }
     
-    @IBAction func end2(_ sender: Any) {
-        label = 3
-    }
-    @IBAction func end3(_ sender: Any) {
-        label = 4
-    }
-    @IBAction func end4(_ sender: Any) {
-        label = 5
-    }
-    @IBAction func InviaClicked(_ sender: Any) {
+    @IBAction func InviaClicked(_ sender: Any) { //Push dati al database
         switch section {
         case 2:
             break
@@ -63,23 +67,40 @@ class CreaSegnalazione: UIViewController, UIPickerViewDelegate, UIPickerViewData
             break
         }
     }
-    
-    @IBOutlet weak var FirstLabel: UILabel!
-    @IBOutlet weak var InviaButton: UIButton!
-    @IBOutlet weak var SecondLabel: UILabel!
-    @IBOutlet weak var SecondTF: UITextField!
-    @IBOutlet weak var AltroTV: UITextView!
-    @IBOutlet weak var TipoTF: UITextField!
-    @IBOutlet weak var ThirdLabel: UILabel!
-    @IBOutlet weak var ThirdTF: UITextField!
-    @IBOutlet weak var FourthLabel: UILabel!
-    @IBOutlet weak var FourthTF: UITextField!
+    //Tutti
+    @IBOutlet weak var TipoLabel: UILabel!
+    @IBOutlet weak var TipoTFPicker: UITextField!
     var TipoPicker = UIPickerView()
-    var SecondPicker = UIPickerView()
-    var OraPicker = UIPickerView()
-    var TimePicker = UIDatePicker()
+    @IBOutlet weak var InviaButton: UIButton!
     
+    //Anticipo/Ritardo Corse Mancanti
+    @IBOutlet weak var LineaLabel: UILabel!
+    @IBOutlet weak var LineaTFPicker: UITextField!
+    var LineaPicker = UIPickerView()
     
+    //Anticipo/Ritardo
+    @IBOutlet weak var Quantolabel: UILabel!
+    @IBOutlet weak var QuantoTFPicker: UITextField!
+    var QuantoPicker = UIPickerView()
+    
+    //Controllori
+    @IBOutlet weak var DoveLabel: UILabel!
+    @IBOutlet weak var DoveSegmentedControl: UISegmentedControl!
+
+    
+    @IBOutlet weak var LinFerLabel: UILabel!
+    @IBOutlet weak var LinFerTFPicker: UITextField!
+    var LinFerPicker = UIPickerView()
+    
+    //Corse Mancanti
+    @IBOutlet weak var OreLabel: UILabel!
+    @IBOutlet weak var OreTFPicker: UITextField!
+    var OrePicker = UIDatePicker()
+    
+    //Altro
+    @IBOutlet weak var AltroTV: UITextView!
+    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,22 +110,24 @@ class CreaSegnalazione: UIViewController, UIPickerViewDelegate, UIPickerViewData
         AltroTV.text = "Scrivici qualsiasi cosa..."
         AltroTV.textColor = UIColor.lightGray
         
-        //TipoTextField
+        //TipoTextFieldPicker
         TipoPicker.delegate = self
-       
-        //SecondTextField
-        SecondPicker.delegate = self
-        
-
-        FirstLabel.text = "Tipo:"
-        SecondLabel.text = "Linea:"
-        ThirdLabel.text = "Ora:"
+        TipoTFPicker.inputView = TipoPicker
+        //LineaTextFieldPicker
+        LineaPicker.delegate = self
+        LineaTFPicker.inputView = LineaPicker
+        //QuantoTextFieldPicker
+        QuantoPicker.delegate = self
+        QuantoTFPicker.inputView = QuantoPicker
+        //LinFerTextFieldPicker
+        LinFerPicker.delegate = self
+        LinFerTFPicker.inputView = LinFerPicker
     }
     
-//---TIMEPICKER
+//---TIMEPICKER Corse Mancanti
     
     func showTimePicker(){
-        TimePicker.datePickerMode = .time
+        OrePicker.datePickerMode = .time
         
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
@@ -114,8 +137,8 @@ class CreaSegnalazione: UIViewController, UIPickerViewDelegate, UIPickerViewData
         
         toolbar.setItems([cancelButton,spaceButton,doneButton], animated: false)
         
-        ThirdTF.inputAccessoryView = toolbar
-        ThirdTF.inputView = TimePicker
+        OreTFPicker.inputAccessoryView = toolbar
+        OreTFPicker.inputView = OrePicker
         
     }
     
@@ -124,7 +147,7 @@ class CreaSegnalazione: UIViewController, UIPickerViewDelegate, UIPickerViewData
         formatter.locale = Locale(identifier: "UTC")
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         formatter.dateFormat = "hh:mm"
-        ThirdTF.text =  formatter.string(from: TimePicker.date)
+        OreTFPicker.text =  formatter.string(from: OrePicker.date)
         self.view.endEditing(true)
         doneClick()
     }
@@ -149,89 +172,58 @@ class CreaSegnalazione: UIViewController, UIPickerViewDelegate, UIPickerViewData
     }
     
     @objc func doneClick() {
-        section = setSection(TipoTF.text!)
-        if(section == 1) {
-            label = 2
-            SecondTF.isHidden = true
-            SecondLabel.isHidden = true
-            AltroTV.isHidden = true
-            ThirdTF.isHidden = true
-            ThirdLabel.isHidden = true
-            FourthTF.isHidden = true
-            FourthLabel.isHidden = true
-            InviaButton.isHidden = true
-        }
-        if(section == 2 || section == 3) {
+        section = setSection(TipoTFPicker.text!)
+        //Seleziona...
+        LineaLabel.isHidden = true
+        LineaTFPicker.isHidden = true
+        Quantolabel.isHidden = true
+        QuantoTFPicker.isHidden = true
+        DoveLabel.isHidden = true
+        DoveSegmentedControl.isHidden = true
+        LinFerLabel.isHidden = true
+        LinFerTFPicker.isHidden = true
+        OreLabel.isHidden = true
+        OreTFPicker.isHidden = true
+        AltroTV.isHidden = true
+        InviaButton.isHidden = true
+        
+        if(section == 2 || section == 3) { //Anticipo/Ritardo
             
-            SecondTF.isHidden = false
-            SecondLabel.isHidden = false
-            AltroTV.isHidden = true
-            if(label == 3) {
-                
-                ThirdTF.isHidden = false
-                ThirdLabel.isHidden = false
-            }
-            if(label == 4)
-            {
-                FourthTF.isHidden = false
-                FourthLabel.isHidden = false
-                FourthLabel.text = "Quanto:"
-            }
-            if(label == 5){
-                InviaButton.isHidden = false
-            }
+            LineaLabel.isHidden = false
+            LineaTFPicker.isHidden = false
+            Quantolabel.isHidden = false
+            QuantoTFPicker.isHidden = false
+            InviaButton.isHidden = false
         }
-        if(section == 4) {
+        if(section == 4) { //Controllori
             
-            SecondTF.isHidden = false
-            SecondLabel.isHidden = false
-            AltroTV.isHidden = true
-            if(label == 3) {
-                ThirdTF.isHidden = false
-                ThirdLabel.isHidden = false
-            }
-            if(label == 4)
-            {
-                FourthTF.isHidden = false
-                FourthLabel.isHidden = false
-                FourthLabel.text = "Fermata:"
-            }
-            if(label == 5){
-                InviaButton.isHidden = false
-            }
+            DoveLabel.isHidden = false
+            DoveSegmentedControl.isHidden = false
+            LinFerLabel.isHidden = false
+            LinFerTFPicker.isHidden = false
+            InviaButton.isHidden = false
         }
-        if(section == 5) {
+        if(section == 5) { //Corse Mancanti
             
-            SecondTF.isHidden = false
-            SecondLabel.isHidden = false
-            AltroTV.isHidden = true
-            if(label == 3) {
-                ThirdTF.isHidden = false
-                ThirdLabel.isHidden = false
-            }
-            if(label == 4)
-            {
-                InviaButton.isHidden = false
-            }
+            LineaLabel.isHidden = false
+            LineaTFPicker.isHidden = false
+            OreLabel.isHidden = false
+            OreTFPicker.isHidden = false
+            InviaButton.isHidden = false
         }
-        if(section == 6) {
+        if(section == 6) { //Altro
 
-            
-            SecondTF.isHidden = true
-            SecondLabel.isHidden = true
             AltroTV.isHidden = false
-            if(label == 3) {
-                InviaButton.isHidden = false
-            }
+            InviaButton.isHidden = false
         }
-        TipoTF.endEditing(true)
-        SecondTF.endEditing(true)
-        ThirdTF.endEditing(true)
-        FourthTF.endEditing(true)
+        TipoTFPicker.endEditing(true)
+        LineaTFPicker.endEditing(true)
+        QuantoTFPicker.endEditing(true)
+        LinFerTFPicker.endEditing(true)
+        OreTFPicker.endEditing(true)
     }
     @objc func cancelClick() {
-        TipoTF.endEditing(true)
-        
+        TipoTFPicker.endEditing(true)
     }
     
     
@@ -282,9 +274,9 @@ class CreaSegnalazione: UIViewController, UIPickerViewDelegate, UIPickerViewData
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
         if(section == 2 || section == 3) {
-            SecondTF.text = Corse[row]
+            LineaTFPicker.text = Corse[row]
         }else{
-            TipoTF.text = TipiSegnalazioni[row]
+            TipoTFPicker.text = TipiSegnalazioni[row]
         }
     }
     

@@ -14,7 +14,7 @@ class RicercaViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var ATextField: UITextField!
     
-    var suggestions = ["cacca","pipi"]
+    var suggestions = ["Bergamo","Tavernola"]
     var Trovato: Bool = false
     var trv1:Bool = false
     var trv2:Bool = false

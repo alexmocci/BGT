@@ -13,11 +13,11 @@
 		45D57C6A226E04D200CBDBDC /* RicercaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D57C69226E04D200CBDBDC /* RicercaViewController.swift */; };
 		45D57C6C226E04D200CBDBDC /* SegnalazioniViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D57C6B226E04D200CBDBDC /* SegnalazioniViewController.swift */; };
 		45D57C6F226E04D200CBDBDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D57C6D226E04D200CBDBDC /* Main.storyboard */; };
-		45D57C71226E04D300CBDBDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45D57C70226E04D300CBDBDC /* Assets.xcassets */; };
 		45D57C74226E04D300CBDBDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D57C72226E04D300CBDBDC /* LaunchScreen.storyboard */; };
 		45D57C7F226E04D300CBDBDC /* BGTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D57C7E226E04D300CBDBDC /* BGTTests.swift */; };
 		45D57C8A226E04D300CBDBDC /* BGTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D57C89226E04D300CBDBDC /* BGTUITests.swift */; };
 		45D57C98226E06EE00CBDBDC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D57C97226E06EE00CBDBDC /* SettingsViewController.swift */; };
+		C364F94122B401C8008B0A85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C364F94022B401C8008B0A85 /* Assets.xcassets */; };
 		C3D7317522AAD4700023F1DE /* CreaSegnalazione.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D7317422AAD4700023F1DE /* CreaSegnalazione.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +46,6 @@
 		45D57C69226E04D200CBDBDC /* RicercaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RicercaViewController.swift; sourceTree = "<group>"; };
 		45D57C6B226E04D200CBDBDC /* SegnalazioniViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnalazioniViewController.swift; sourceTree = "<group>"; };
 		45D57C6E226E04D200CBDBDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		45D57C70226E04D300CBDBDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45D57C73226E04D300CBDBDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45D57C75226E04D300CBDBDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45D57C7A226E04D300CBDBDC /* BGTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BGTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +55,7 @@
 		45D57C89226E04D300CBDBDC /* BGTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGTUITests.swift; sourceTree = "<group>"; };
 		45D57C8B226E04D300CBDBDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45D57C97226E06EE00CBDBDC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C364F94022B401C8008B0A85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3D7317422AAD4700023F1DE /* CreaSegnalazione.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreaSegnalazione.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,7 +115,7 @@
 				45D57C97226E06EE00CBDBDC /* SettingsViewController.swift */,
 				4576D3FB226E371C003AD400 /* CustomSegue.swift */,
 				45D57C6D226E04D200CBDBDC /* Main.storyboard */,
-				45D57C70226E04D300CBDBDC /* Assets.xcassets */,
+				C364F94022B401C8008B0A85 /* Assets.xcassets */,
 				45D57C72226E04D300CBDBDC /* LaunchScreen.storyboard */,
 				45D57C75226E04D300CBDBDC /* Info.plist */,
 			);
@@ -245,7 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45D57C74226E04D300CBDBDC /* LaunchScreen.storyboard in Resources */,
-				45D57C71226E04D300CBDBDC /* Assets.xcassets in Resources */,
+				C364F94122B401C8008B0A85 /* Assets.xcassets in Resources */,
 				45D57C6F226E04D200CBDBDC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
